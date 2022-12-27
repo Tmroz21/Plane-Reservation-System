@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    planetypedatabasecontroller.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    planetypedatabasecontroller.h
 
 FORMS += \
     mainwindow.ui
