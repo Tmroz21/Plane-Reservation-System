@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include <QGroupBox>
-#include <QRadioButton>
 #include <QListWidget>
+#include <QCheckBox>
+#include <QSignalMapper>
+#include <QObject>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,9 +20,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+private slots:
+    void on_pushButton_clicked();
 private:
     Ui::MainWindow *ui;
     QGroupBox *CreateSeatView();
-     QGroupBox *CreatePlaneView();
+
 };
 #endif // MAINWINDOW_H

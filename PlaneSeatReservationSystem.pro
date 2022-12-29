@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    planeseatcheckbox.cpp \
     planetypedatabasecontroller.cpp
 
 HEADERS += \
     mainwindow.h \
+    planeseatcheckbox.h \
     planetypedatabasecontroller.h
 
 FORMS += \
