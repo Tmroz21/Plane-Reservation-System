@@ -11,6 +11,7 @@ CONFIG += c++17
 
 SOURCES += \
     addflightwindow.cpp \
+    flightsdatabasecontroller.cpp \
     main.cpp \
     mainwindow.cpp \
     planeseatcheckbox.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     addflightwindow.h \
+    flightsdatabasecontroller.h \
     mainwindow.h \
     planeseatcheckbox.h \
     planetypedatabasecontroller.h
