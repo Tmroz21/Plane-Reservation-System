@@ -33,7 +33,7 @@ bool PlaneTypeDatabaseController::CreateTable()
     bool success = false;
 
     QSqlQuery query;
-    query.prepare("CREATE TABLE plane_type_db(id INTEGER PRIMARY KEY, plane_type TEXT,sets INT(255), rows INT(255), columns INT(255));");
+    query.prepare("CREATE TABLE plane_type_db(id INTEGER PRIMARY KEY, plane_type TEXT, seats INT(255), rows INT(255), columns INT(255));");
 
     if (!query.exec())
     {
@@ -105,4 +105,24 @@ int PlaneTypeDatabaseController::CountItemsInDatabase()
         return query.value(0).toInt();
     }
     return 0;
+}
+
+QString PlaneTypeDatabaseController::GetPlaneTypeByID(int id)
+{
+    QSqlQuery queryGet;
+       queryGet.prepare("SELECT plane_type FROM plane_type_db WHERE id = (:id)");
+       queryGet.bindValue(":id",id);
+       if(queryGet.exec())
+       {
+           while (queryGet.next())
+           {
+               qDebug() << queryGet.value(0).toString();
+               return queryGet.value(0).toString();
+           }
+       }
+       else
+       {
+           qDebug() << "plane_type_database error while getting plane_type To String by ID " << queryGet.lastError();
+       }
+       return 0;
 }

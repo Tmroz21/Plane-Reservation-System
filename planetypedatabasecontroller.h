@@ -25,7 +25,7 @@ public:
 
     int CountItemsInDatabase();
 
-
+    QString GetPlaneTypeByID(int id);
 
 private:
 

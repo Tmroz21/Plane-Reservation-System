@@ -3,7 +3,7 @@
 #include "planetypedatabasecontroller.h"
 
 static const QString planeTypeDB_path = "plane_type_db.db";
-PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
+
 
 AddFlightWindow::AddFlightWindow(QWidget *parent) :
     QWidget(parent),
@@ -11,6 +11,8 @@ AddFlightWindow::AddFlightWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     AddItemsToPlaneTypeComboBox();
+    PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
+    planeTypeDB.CreateTable();
 }
 
 AddFlightWindow::~AddFlightWindow()
@@ -20,10 +22,9 @@ AddFlightWindow::~AddFlightWindow()
 
 void AddFlightWindow::AddItemsToPlaneTypeComboBox()
 {
-
+    PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
     for(int i=1;i<=planeTypeDB.CountItemsInDatabase();i++)
     {
-        ui->planeTypeComboBox->addItem("test");
+        ui->planeTypeComboBox->addItem(planeTypeDB.GetPlaneTypeByID(i));
     }
-
 }

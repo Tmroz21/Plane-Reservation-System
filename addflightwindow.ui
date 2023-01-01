@@ -6,32 +6,57 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>130</width>
+    <width>218</width>
     <height>161</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
    </property>
    <item>
-    <widget class="QComboBox" name="planeTypeComboBox"/>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="departureLineEdit"/>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="arrivalLineEdit"/>
-   </item>
-   <item>
-    <widget class="QPushButton" name="addFlightPushButton">
-     <property name="text">
-      <string>Add Flight</string>
-     </property>
-    </widget>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="arrivalLineEdit"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="departureLineEdit"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="planeTypeComboBox"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="addFlightPushButton">
+       <property name="text">
+        <string>Add Flight</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Arrival</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Departure</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Plane Type</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QLabel" name="informationLabel">
