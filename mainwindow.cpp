@@ -3,6 +3,7 @@
 #include "qobjectdefs.h"
 #include "ui_mainwindow.h"
 #include "planeseatcheckbox.h"
+#include "addflightwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,24 +23,16 @@ QGroupBox *MainWindow::CreateSeatView()
 {
     QGroupBox *groupBox = new QGroupBox(tr("Seats"));
     QGridLayout *vbox = new QGridLayout;
-    int row = 0;
-    int column = 0;
+
     for(int i=1;i<=60;i++)
     {
-        if((i-1)%6==0)
-        {
-            row+=1;
-            column =0;
-        }
-        //if(column == 3)      {        }
-        std::string istr = std::to_string(i);
-        const char * ich = istr.c_str();
-        QCheckBox* seat = new QCheckBox(tr(ich));
+        //std::string istr = std::to_string(i);
+        //const char * ich = istr.c_str();
+
+        QCheckBox* seat = new QCheckBox();
         PlaneSeatCheckBox *st = new PlaneSeatCheckBox(seat,i);
 
-        vbox->addWidget(st->parentWidget(),row,column);
-
-        column+=1;
+        vbox->addWidget(st->parentWidget(),(i-1)/6,(i-1)%6);
     }
     groupBox->setLayout(vbox);
     return groupBox;
@@ -47,5 +40,12 @@ QGroupBox *MainWindow::CreateSeatView()
 
 void MainWindow::on_pushButton_clicked()
 {
-    qDebug() << "clicked";
+    qDebug() << "booking_button: Clicked";
 }
+
+void MainWindow::on_actionAdd_flight_triggered()
+{
+    AddFlightWindow *addFlightWindow = new AddFlightWindow();
+    addFlightWindow->show();
+}
+

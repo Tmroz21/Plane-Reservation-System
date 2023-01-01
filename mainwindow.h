@@ -23,6 +23,8 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void on_actionAdd_flight_triggered();
+
 private:
     Ui::MainWindow *ui;
     QGroupBox *CreateSeatView();

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddFlightWindow</class>
+ <widget class="QWidget" name="AddFlightWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>130</width>
+    <height>161</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
+   <item>
+    <widget class="QComboBox" name="planeTypeComboBox"/>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="departureLineEdit"/>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="arrivalLineEdit"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="addFlightPushButton">
+     <property name="text">
+      <string>Add Flight</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="informationLabel">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
