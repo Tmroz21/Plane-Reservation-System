@@ -16,6 +16,9 @@ public:
     ~AddFlightWindow();
     void AddItemsToPlaneTypeComboBox();
 
+private slots:
+    void on_addFlightPushButton_clicked();
+
 private:
     Ui::AddFlightWindow *ui;
 };

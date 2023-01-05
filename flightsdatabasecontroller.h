@@ -20,7 +20,7 @@ public:
 
     bool AddFlightToTable(const QString planeType, const QString code, const QString departure, const QString arrival);
 
-    bool FlightExists(const QString code);
+    bool FlightExists(const QString code) const;
 
 private:
 

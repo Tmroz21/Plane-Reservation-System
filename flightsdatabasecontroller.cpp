@@ -51,7 +51,7 @@ bool FlightsDatabaseController::AddFlightToTable(const QString planeType, const 
     if(!planeType.isEmpty())
     {
         QSqlQuery queryAdd;
-        queryAdd.prepare("INSERT INTO flights_db (plane_type, seats, rows, columns) VALUES (:plane_type, :seats, :rows, :columns )");
+        queryAdd.prepare("INSERT INTO flights_db (plane_type, code, departure, arrival) VALUES (:plane_type, :code, :departure, :arrival )");
         queryAdd.bindValue(":plane_type", planeType);
         queryAdd.bindValue(":code", code);
         queryAdd.bindValue(":departure", departure);
@@ -59,6 +59,7 @@ bool FlightsDatabaseController::AddFlightToTable(const QString planeType, const 
         if(queryAdd.exec())
         {
             success = true;
+            qDebug() <<  "flight added to database";
         }
         else
         {
@@ -71,4 +72,28 @@ bool FlightsDatabaseController::AddFlightToTable(const QString planeType, const 
     }
 
     return success;
+}
+
+bool FlightsDatabaseController::FlightExists(const QString code) const
+{
+    bool exists = false;
+    QSqlQuery queryCheck;
+
+    queryCheck.prepare("SELECT code FROM flights_db WHERE code = (:code)");
+    queryCheck.bindValue(":code", code);
+
+    if(queryCheck.exec())
+    {
+        if(queryCheck.next())
+        {
+            exists = true;
+            qDebug() << "flight " << code << " already exist in flights_db";
+        }
+    }
+    else
+    {
+        qDebug() << "flight exist failed: " << queryCheck.lastError();
+    }
+
+    return exists;
 }
