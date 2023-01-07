@@ -4,6 +4,9 @@
 #include "ui_mainwindow.h"
 #include "planeseatcheckbox.h"
 #include "addflightwindow.h"
+#include "planetypedatabasecontroller.h"
+#include "flightsdatabasecontroller.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,8 +26,9 @@ QGroupBox *MainWindow::CreateSeatView()
 {
     QGroupBox *groupBox = new QGroupBox(tr("Seats"));
     QGridLayout *vbox = new QGridLayout;
-
-    for(int i=1;i<=60;i++)
+    PlaneTypeDatabaseController PlaneTypeDB(planeTypeDB_path);
+    int columns = PlaneTypeDB.GetColumnsByPlaneType("Airbus A320");
+    for(int i=1;i<=PlaneTypeDB.GetSeatsByPlaneType("Airbus A320");i++)
     {
         //std::string istr = std::to_string(i);
         //const char * ich = istr.c_str();
@@ -32,7 +36,7 @@ QGroupBox *MainWindow::CreateSeatView()
         QCheckBox* seat = new QCheckBox();
         PlaneSeatCheckBox *st = new PlaneSeatCheckBox(seat,i);
 
-        vbox->addWidget(st->parentWidget(),(i-1)/6,(i-1)%6);
+        vbox->addWidget(st->parentWidget(),(i-1)/columns,(i-1)%columns);
     }
     groupBox->setLayout(vbox);
     return groupBox;

@@ -126,3 +126,63 @@ QString PlaneTypeDatabaseController::GetPlaneTypeByID(int id)
        }
        return 0;
 }
+
+int PlaneTypeDatabaseController::GetRowsByPlaneType(QString planeType)
+{
+    QSqlQuery queryGet;
+       queryGet.prepare("SELECT rows FROM plane_type_db WHERE plane_type = (:plane_type)");
+       queryGet.bindValue(":plane_type",planeType);
+       if(queryGet.exec())
+       {
+           while (queryGet.next())
+           {
+               qDebug() << queryGet.value(0).toInt();
+               return queryGet.value(0).toInt();
+           }
+       }
+       else
+       {
+           qDebug() << "plane_type_database error while getting plane_type To String by ID " << queryGet.lastError();
+       }
+       return 0;
+}
+
+int PlaneTypeDatabaseController::GetColumnsByPlaneType(QString planeType)
+{
+    QSqlQuery queryGet;
+       queryGet.prepare("SELECT columns FROM plane_type_db WHERE plane_type = (:plane_type)");
+       queryGet.bindValue(":plane_type",planeType);
+       if(queryGet.exec())
+       {
+           while (queryGet.next())
+           {
+               qDebug() << queryGet.value(0).toInt();
+               return queryGet.value(0).toInt();
+           }
+       }
+       else
+       {
+           qDebug() << "plane_type_database error while getting plane_type To String by ID " << queryGet.lastError();
+       }
+       return 0;
+}
+
+int PlaneTypeDatabaseController::GetSeatsByPlaneType(QString planeType)
+{
+    QSqlQuery queryGet;
+       queryGet.prepare("SELECT seats FROM plane_type_db WHERE plane_type = (:plane_type)");
+       queryGet.bindValue(":plane_type",planeType);
+       if(queryGet.exec())
+       {
+           while (queryGet.next())
+           {
+               qDebug() << queryGet.value(0).toInt();
+               return queryGet.value(0).toInt();
+           }
+       }
+       else
+       {
+           qDebug() << "plane_type_database error while getting plane_type To String by ID " << queryGet.lastError();
+       }
+       return 0;
+}

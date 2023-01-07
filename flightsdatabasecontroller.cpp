@@ -97,3 +97,22 @@ bool FlightsDatabaseController::FlightExists(const QString code) const
 
     return exists;
 }
+
+QString GetPlaneTypeByCode(const QString code)
+{
+    QSqlQuery queryGet;
+    queryGet.prepare("SELECT plane_type FROM flights_db WHERE code = (:code)");
+    queryGet.bindValue(":code",code);
+    if(queryGet.exec())
+    {
+        while (queryGet.next())
+        {
+            return queryGet.value(0).toString();
+        }
+    }
+    else
+    {
+        qDebug() << queryGet.lastError();
+    }
+    return 0;
+}

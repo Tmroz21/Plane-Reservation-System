@@ -27,6 +27,12 @@ public:
 
     QString GetPlaneTypeByID(int id);
 
+    int GetRowsByPlaneType(QString planeType);
+
+    int GetColumnsByPlaneType(QString planeType);
+
+    int GetSeatsByPlaneType(QString planeType);
+
 private:
 
     QSqlDatabase m_planeDatabase;

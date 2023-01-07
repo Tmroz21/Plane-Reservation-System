@@ -3,9 +3,6 @@
 #include "planetypedatabasecontroller.h"
 #include "flightsdatabasecontroller.h"
 
-static const QString planeTypeDB_path = "plane_type_db.db";
-static const QString flightsDB_path = "flights_db.db";
-
 
 AddFlightWindow::AddFlightWindow(QWidget *parent) :
     QWidget(parent),
@@ -35,21 +32,32 @@ void AddFlightWindow::AddItemsToPlaneTypeComboBox()
 }
 
 void AddFlightWindow::on_addFlightPushButton_clicked()
-{;
-    //bool checkStr;
+{
+    bool isDepartureDigit, isArrivalDigit;
     FlightsDatabaseController flightsDB(flightsDB_path);
     QString planeType, code ,departure, arrival;
     planeType = ui->planeTypeComboBox->currentText();
     departure = ui->departureLineEdit->text();
     arrival = ui->arrivalLineEdit->text();
     code = ui->codeLineEdit->text();
-    //double departureTest = departure.toDouble(&checkStr);
-    //if(!checkStr){
-    //    qDebug() << "ok";
-    //}
-    if(flightsDB.FlightExists(code) == 0)
+
+    if(!flightsDB.FlightExists(code))
     {
-       flightsDB.AddFlightToTable(planeType,code,departure,arrival);
+        if(!departure.toDouble(&isDepartureDigit) && !arrival.toDouble(&isArrivalDigit))
+        {
+            if(flightsDB.AddFlightToTable(planeType,code,departure,arrival))
+            {
+                ui->informationLabel->setText("Flight " + code + " added");
+            }
+        }
+        else
+        {
+           ui->informationLabel->setText("departure and arrival can not be a digit");
+        }
+    }
+    else
+    {
+     ui->informationLabel->setText("Flight " + code + " already exist");
     }
 }
 

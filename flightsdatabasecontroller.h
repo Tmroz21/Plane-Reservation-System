@@ -22,6 +22,8 @@ public:
 
     bool FlightExists(const QString code) const;
 
+    QString GetPlaneTypeByCode(const QString code);
+
 private:
 
     QSqlDatabase m_flightsDatabase;

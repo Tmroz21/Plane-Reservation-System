@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+static const QString planeTypeDB_path = "plane_type_db.db";
+static const QString flightsDB_path = "flights_db.db";
+
 namespace Ui {
 class AddFlightWindow;
 }
