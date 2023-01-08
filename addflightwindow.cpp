@@ -3,7 +3,6 @@
 #include "planetypedatabasecontroller.h"
 #include "flightsdatabasecontroller.h"
 
-
 AddFlightWindow::AddFlightWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AddFlightWindow)

@@ -7,6 +7,7 @@
 #include <QCheckBox>
 #include <QSignalMapper>
 #include <QObject>
+#include <QLayoutItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,16 +19,25 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
+
+    void *CreateSeatView(QString code);
 
 
 private slots:
     void on_pushButton_clicked();
+
     void on_actionAdd_flight_triggered();
+
+
+    void on_listWidget_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
-    QGroupBox *CreateSeatView();
+
+    bool m_isObjectReadyToBeDelete{};
+
 
 };
 #endif // MAINWINDOW_H

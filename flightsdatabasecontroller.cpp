@@ -98,7 +98,7 @@ bool FlightsDatabaseController::FlightExists(const QString code) const
     return exists;
 }
 
-QString GetPlaneTypeByCode(const QString code)
+QString FlightsDatabaseController::GetPlaneTypeByCode(const QString code)
 {
     QSqlQuery queryGet;
     queryGet.prepare("SELECT plane_type FROM flights_db WHERE code = (:code)");
