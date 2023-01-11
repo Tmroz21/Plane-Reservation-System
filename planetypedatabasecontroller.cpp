@@ -136,7 +136,7 @@ int PlaneTypeDatabaseController::GetRowsByPlaneType(QString planeType)
        {
            while (queryGet.next())
            {
-               qDebug() << queryGet.value(0).toInt();
+               //qDebug() << queryGet.value(0).toInt();
                return queryGet.value(0).toInt();
            }
        }
@@ -156,7 +156,7 @@ int PlaneTypeDatabaseController::GetColumnsByPlaneType(QString planeType)
        {
            while (queryGet.next())
            {
-               qDebug() << queryGet.value(0).toInt();
+               //qDebug() << queryGet.value(0).toInt();
                return queryGet.value(0).toInt();
            }
        }
@@ -176,7 +176,7 @@ int PlaneTypeDatabaseController::GetSeatsByPlaneType(QString planeType)
        {
            while (queryGet.next())
            {
-               qDebug() << queryGet.value(0).toInt();
+               //qDebug() << queryGet.value(0).toInt();
                return queryGet.value(0).toInt();
            }
        }

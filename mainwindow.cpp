@@ -69,7 +69,6 @@ void MainWindow::on_actionAdd_flight_triggered()
     addFlightWindow->show();
 }
 
-
 void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
     QString code =  item->text().first(4);
