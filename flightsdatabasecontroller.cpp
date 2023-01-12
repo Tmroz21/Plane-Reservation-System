@@ -116,3 +116,32 @@ QString FlightsDatabaseController::GetPlaneTypeByCode(const QString code)
     }
     return 0;
 }
+
+QString FlightsDatabaseController::GetStringRecordByID(int id, const QString date)
+{
+    QSqlQuery queryGet;
+    queryGet.prepare("SELECT " + date + " FROM flights_db WHERE id = (:id)");
+    queryGet.bindValue(":id",id);
+    if(queryGet.exec())
+    {
+        while (queryGet.next())
+        {
+            return queryGet.value(0).toString();
+        }
+    }
+    else
+    {
+        qDebug() << queryGet.lastError();
+    }
+    return 0;
+}
+
+int FlightsDatabaseController::CountItemsInDatabase()
+{
+    QSqlQuery query("SELECT COUNT(*) as count FROM flights_db");
+    if (query.next())
+    {
+        return query.value(0).toInt();
+    }
+    return 0;
+}

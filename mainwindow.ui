@@ -28,18 +28,7 @@
   <widget class="QWidget" name="Centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QListWidget" name="listWidget">
-      <item>
-       <property name="text">
-        <string>A001 Kraków - Warszawa</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>A002 Kraków - Gdansk</string>
-       </property>
-      </item>
-     </widget>
+     <widget class="QListWidget" name="listWidget"/>
     </item>
     <item>
      <widget class="QPushButton" name="pushButton">
@@ -68,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>13</height>
+     <height>16</height>
     </rect>
    </property>
    <property name="font">

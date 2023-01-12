@@ -24,6 +24,10 @@ public:
 
     QString GetPlaneTypeByCode(const QString code);
 
+    QString GetStringRecordByID(int id, const QString date);
+
+    int CountItemsInDatabase();
+
 private:
 
     QSqlDatabase m_flightsDatabase;

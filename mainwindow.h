@@ -24,6 +24,10 @@ public:
 
     void *CreateSeatView(QString code);
 
+    void AddFlightToList(int id);
+
+    void UpdateFlightsList();
+
 
 private slots:
     void on_pushButton_clicked();

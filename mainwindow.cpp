@@ -7,18 +7,21 @@
 #include "planetypedatabasecontroller.h"
 #include "flightsdatabasecontroller.h"
 
+FlightsDatabaseController flightsDB(flightsDB_path);
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    UpdateFlightsList();
 }
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 void *MainWindow::CreateSeatView(QString code)
 {
     QGroupBox *groupBox = new QGroupBox(tr("Seats"));
@@ -76,3 +79,19 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
     CreateSeatView(code);
 }
 
+void MainWindow::AddFlightToList(int id)
+{
+    //FlightsDatabaseController flightsDB(flightsDB_path);
+    ui->listWidget->addItem(flightsDB.GetStringRecordByID(id,"code") + " " + flightsDB.GetStringRecordByID(id,"Departure") + " - " + flightsDB.GetStringRecordByID(id,"Arrival"));
+
+}
+
+void MainWindow::UpdateFlightsList()
+{
+    FlightsDatabaseController flightsDB(flightsDB_path);
+    ui->listWidget->clear();
+    for(int i=1;i<=flightsDB.CountItemsInDatabase();i++)
+    {
+        AddFlightToList(i);
+    }
+}
