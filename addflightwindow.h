@@ -5,6 +5,7 @@
 
 static const QString planeTypeDB_path = "plane_type_db.db";
 static const QString flightsDB_path = "flights_db.db";
+static const QString seatsDB_path = "seats_db.sb";
 
 namespace Ui {
 class AddFlightWindow;
@@ -16,7 +17,9 @@ class AddFlightWindow : public QWidget
 
 public:
     explicit AddFlightWindow(QWidget *parent = nullptr);
+
     ~AddFlightWindow();
+
     void AddItemsToPlaneTypeComboBox();
 
 private slots:

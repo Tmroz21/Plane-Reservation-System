@@ -2,6 +2,7 @@
 #include "ui_addflightwindow.h"
 #include "planetypedatabasecontroller.h"
 #include "flightsdatabasecontroller.h"
+#include "seatsdatabasecontroller.h"
 
 AddFlightWindow::AddFlightWindow(QWidget *parent) :
     QWidget(parent),
@@ -13,6 +14,7 @@ AddFlightWindow::AddFlightWindow(QWidget *parent) :
     planeTypeDB.CreateTable();
     FlightsDatabaseController flightsDB(flightsDB_path);
     flightsDB.CreateTable();
+    //SeatsDatabaseController seatsDB(seatsDB_path);
 
 }
 
@@ -47,6 +49,15 @@ void AddFlightWindow::on_addFlightPushButton_clicked()
             if(flightsDB.AddFlightToTable(planeType,code,departure,arrival))
             {
                 ui->informationLabel->setText("Flight " + code + " added");
+
+                PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
+                int seats = planeTypeDB.GetSeatsByPlaneType(planeType);
+                SeatsDatabaseController seatsDB(seatsDB_path);
+                seatsDB.CreatTable(code);
+                for(int i=1;i<=seats;i++)
+                {
+                    seatsDB.AddSeat(0,code);
+                }
             }
         }
         else

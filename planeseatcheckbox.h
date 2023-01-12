@@ -3,6 +3,7 @@
 
 #include "qcheckbox.h"
 #include <QWidget>
+#include <QMap>
 
 class PlaneSeatCheckBox : public QWidget
 {

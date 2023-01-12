@@ -15,14 +15,17 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     planeseatcheckbox.cpp \
-    planetypedatabasecontroller.cpp
+    planetypedatabasecontroller.cpp \
+    seatsdatabasecontroller.cpp
 
 HEADERS += \
+    Globals.h \
     addflightwindow.h \
     flightsdatabasecontroller.h \
     mainwindow.h \
     planeseatcheckbox.h \
-    planetypedatabasecontroller.h
+    planetypedatabasecontroller.h \
+    seatsdatabasecontroller.h
 
 FORMS += \
     addflightwindow.ui \
