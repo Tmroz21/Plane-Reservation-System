@@ -8,7 +8,7 @@
 #include "flightsdatabasecontroller.h"
 #include "seatsdatabasecontroller.h"
 
-//FlightsDatabaseController flightsDB(flightsDB_path);
+FlightsDatabaseController flightsDB(flightsDB_path);
 //PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
 
 QMap<int,int> isCheckedMap;
@@ -85,16 +85,23 @@ void MainWindow::on_pushButton_clicked()
     qDebug() << isCheckedMap;
     qDebug() << m_code;
     qDebug() << isCheckedMap.count();
-    for(int i=0;i<=isCheckedMap.count()+1;i++)
+//    for(int i=0;i<=isCheckedMap.count()+1;i++)
+//    {
+//        qDebug() <<i  << " booking" << isCheckedMap;
+//        SeatsDatabaseController seatDB(seatsDB_path);
+//        seatDB.updateSeatCheckedValue(isCheckedMap.lastKey(),isCheckedMap.value(isCheckedMap.lastKey()),m_code);
+//        isCheckedMap.remove(isCheckedMap.lastKey());
+//    }
+    do
     {
-        qDebug() << "booking" << isCheckedMap;
+        qDebug()  << " booking" << isCheckedMap;
         SeatsDatabaseController seatDB(seatsDB_path);
         seatDB.updateSeatCheckedValue(isCheckedMap.lastKey(),isCheckedMap.value(isCheckedMap.lastKey()),m_code);
         isCheckedMap.remove(isCheckedMap.lastKey());
     }
+    while (!isCheckedMap.empty());
     isCheckedMap.clear();
 }
-
 void MainWindow::on_actionAdd_flight_triggered()
 {
     AddFlightWindow *addFlightWindow = new AddFlightWindow();
@@ -111,17 +118,19 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 
 void MainWindow::AddFlightToList(int id)
 {
-    FlightsDatabaseController flightsDB(flightsDB_path);
+    //FlightsDatabaseController flightsDB(flightsDB_path);
+    qDebug() << flightsDB.GetStringRecordByID(id,"code");
     ui->listWidget->addItem(flightsDB.GetStringRecordByID(id,"code") + " " + flightsDB.GetStringRecordByID(id,"Departure") + " - " + flightsDB.GetStringRecordByID(id,"Arrival"));
 
 }
 
 void MainWindow::UpdateFlightsList()
 {
-    FlightsDatabaseController flightsDB(flightsDB_path);
+    //FlightsDatabaseController flightsDB(flightsDB_path);
     ui->listWidget->clear();
     for(int i=1;i<=flightsDB.CountItemsInDatabase();i++)
     {
+        qDebug() << "adding flight to list" << i <<" from "<< flightsDB.CountItemsInDatabase();
         AddFlightToList(i);
     }
 }

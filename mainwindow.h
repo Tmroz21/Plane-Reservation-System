@@ -8,6 +8,7 @@
 #include <QSignalMapper>
 #include <QObject>
 #include <QLayoutItem>
+#include <flightsdatabasecontroller.h>
 
 
 QT_BEGIN_NAMESPACE
