@@ -9,6 +9,7 @@
 #include <QObject>
 #include <QLayoutItem>
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -41,6 +42,8 @@ private:
     Ui::MainWindow *ui;
 
     bool m_isObjectReadyToBeDelete{};
+
+    QString m_code{};
 
 
 };

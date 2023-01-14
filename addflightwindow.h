@@ -5,7 +5,7 @@
 
 static const QString planeTypeDB_path = "plane_type_db.db";
 static const QString flightsDB_path = "flights_db.db";
-static const QString seatsDB_path = "seats_db.sb";
+static const QString seatsDB_path = "seats_db.db";
 
 namespace Ui {
 class AddFlightWindow;

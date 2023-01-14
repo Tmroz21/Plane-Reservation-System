@@ -6,8 +6,13 @@
 #include "addflightwindow.h"
 #include "planetypedatabasecontroller.h"
 #include "flightsdatabasecontroller.h"
+#include "seatsdatabasecontroller.h"
 
-FlightsDatabaseController flightsDB(flightsDB_path);
+//FlightsDatabaseController flightsDB(flightsDB_path);
+//PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
+
+QMap<int,int> isCheckedMap;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,17 +33,30 @@ void *MainWindow::CreateSeatView(QString code)
     QGridLayout *vbox = new QGridLayout;
     FlightsDatabaseController flightsDB(flightsDB_path);
     QString planeType = flightsDB.GetPlaneTypeByCode(code);
+    qDebug() << "planetype" + planeType;
     PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
     int columns = planeTypeDB.GetColumnsByPlaneType(planeType);
-    for(int i=1;i<=planeTypeDB.GetSeatsByPlaneType(planeType);i++)
+    int seats = planeTypeDB.GetSeatsByPlaneType(planeType);
+
+    SeatsDatabaseController seatDB(seatsDB_path);
+    for(int i=1;i<=seats;i++)
     {
-        //std::string istr = std::to_string(i);
-        //const char * ich = istr.c_str();
-
         QCheckBox* seat = new QCheckBox();
-        //seat->setCheckState(Qt::Checked);
-        PlaneSeatCheckBox *st = new PlaneSeatCheckBox(seat,i);
 
+        switch(seatDB.IsSeatChecked(i,code))
+        {
+            case 1:
+                seat->setChecked(1);
+                seat->setDisabled(1);
+                qDebug()<< "seat checked";
+            break;
+            case 0:
+                seat->setChecked(0);
+                seat->setDisabled(0);
+                qDebug()<< "seat not checked";
+            break;
+        }
+        PlaneSeatCheckBox *st = new PlaneSeatCheckBox(seat,i);
         vbox->addWidget(st->parentWidget(),(i-1)/columns,(i-1)%columns);
     }
     groupBox->setLayout(vbox);
@@ -64,6 +82,17 @@ void *MainWindow::CreateSeatView(QString code)
 void MainWindow::on_pushButton_clicked()
 {
     qDebug() << "booking_button: Clicked";
+    qDebug() << isCheckedMap;
+    qDebug() << m_code;
+    qDebug() << isCheckedMap.count();
+    for(int i=0;i<=isCheckedMap.count()+1;i++)
+    {
+        qDebug() << "booking" << isCheckedMap;
+        SeatsDatabaseController seatDB(seatsDB_path);
+        seatDB.updateSeatCheckedValue(isCheckedMap.lastKey(),isCheckedMap.value(isCheckedMap.lastKey()),m_code);
+        isCheckedMap.remove(isCheckedMap.lastKey());
+    }
+    isCheckedMap.clear();
 }
 
 void MainWindow::on_actionAdd_flight_triggered()
@@ -74,14 +103,15 @@ void MainWindow::on_actionAdd_flight_triggered()
 
 void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
-    QString code =  item->text().first(4);
+    PlaneTypeDatabaseController planeTypeDB(planeTypeDB_path);
+    m_code =  item->text().first(4);
     //qDebug() << code;
-    CreateSeatView(code);
+    CreateSeatView(m_code);
 }
 
 void MainWindow::AddFlightToList(int id)
 {
-    //FlightsDatabaseController flightsDB(flightsDB_path);
+    FlightsDatabaseController flightsDB(flightsDB_path);
     ui->listWidget->addItem(flightsDB.GetStringRecordByID(id,"code") + " " + flightsDB.GetStringRecordByID(id,"Departure") + " - " + flightsDB.GetStringRecordByID(id,"Arrival"));
 
 }

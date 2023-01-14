@@ -54,6 +54,7 @@ void AddFlightWindow::on_addFlightPushButton_clicked()
                 int seats = planeTypeDB.GetSeatsByPlaneType(planeType);
                 SeatsDatabaseController seatsDB(seatsDB_path);
                 seatsDB.CreatTable(code);
+                //MainWindow().UpdateFlightsList();
                 for(int i=1;i<=seats;i++)
                 {
                     seatsDB.AddSeat(0,code);

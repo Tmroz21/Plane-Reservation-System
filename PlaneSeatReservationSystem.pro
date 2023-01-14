@@ -19,9 +19,9 @@ SOURCES += \
     seatsdatabasecontroller.cpp
 
 HEADERS += \
-    Globals.h \
     addflightwindow.h \
     flightsdatabasecontroller.h \
+    globals.h \
     mainwindow.h \
     planeseatcheckbox.h \
     planetypedatabasecontroller.h \
