@@ -41,10 +41,11 @@ void AddFlightWindow::on_addFlightPushButton_clicked()
     departure = ui->departureLineEdit->text();
     arrival = ui->arrivalLineEdit->text();
     code = ui->codeLineEdit->text();
+    qDebug() << code.size();
 
-    if(!flightsDB.FlightExists(code))
+    if(!flightsDB.FlightExists(code) && code.size() == 4)
     {
-        if(!departure.toDouble(&isDepartureDigit) && !arrival.toDouble(&isArrivalDigit))
+        if(!departure.toDouble(&isDepartureDigit) && !arrival.toDouble(&isArrivalDigit) && !planeType.isEmpty() && !departure.isEmpty() && !arrival.isEmpty() && !code.isEmpty())
         {
             if(flightsDB.AddFlightToTable(planeType,code,departure,arrival))
             {
@@ -63,12 +64,12 @@ void AddFlightWindow::on_addFlightPushButton_clicked()
         }
         else
         {
-           ui->informationLabel->setText("departure and arrival can not be a digit");
+           ui->informationLabel->setText("departure and arrival can not be a digit or empty");
         }
     }
     else
     {
-     ui->informationLabel->setText("Flight " + code + " already exist");
+     ui->informationLabel->setText("Flight " + code + " already exist or code is given in wrong format");
     }
 }
 

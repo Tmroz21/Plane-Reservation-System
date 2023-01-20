@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>218</width>
-    <height>161</height>
+    <height>186</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,7 +64,29 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="codeLineEdit"/>
+      <widget class="QLineEdit" name="codeLineEdit">
+       <property name="tabletTracking">
+        <bool>false</bool>
+       </property>
+       <property name="statusTip">
+        <string notr="true"/>
+       </property>
+       <property name="accessibleDescription">
+        <string notr="true"/>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Normal</enum>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

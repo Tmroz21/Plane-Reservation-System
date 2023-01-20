@@ -81,17 +81,13 @@ void *MainWindow::CreateSeatView(QString code)
 
 void MainWindow::on_pushButton_clicked()
 {
+    if(!m_code.isNull())
+    {
     qDebug() << "booking_button: Clicked";
     qDebug() << isCheckedMap;
     qDebug() << m_code;
     qDebug() << isCheckedMap.count();
-//    for(int i=0;i<=isCheckedMap.count();i++)
-//    {
-//        qDebug() <<i  << " booking" << isCheckedMap;
-//        SeatsDatabaseController seatDB(seatsDB_path);
-//        seatDB.updateSeatCheckedValue(isCheckedMap.lastKey(),isCheckedMap.value(isCheckedMap.lastKey()),m_code);
-//        isCheckedMap.remove(isCheckedMap.lastKey());
-//    }
+
     do
     {
         qDebug()  << " booking" << isCheckedMap;
@@ -101,6 +97,8 @@ void MainWindow::on_pushButton_clicked()
     }
     while (!isCheckedMap.empty());
     isCheckedMap.clear();
+    CreateSeatView(m_code);
+    }
 }
 void MainWindow::on_actionAdd_flight_triggered()
 {
@@ -134,3 +132,10 @@ void MainWindow::UpdateFlightsList()
         AddFlightToList(i);
     }
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    FlightsDatabaseController flightsDB(flightsDB_path);
+    UpdateFlightsList();
+}
+
