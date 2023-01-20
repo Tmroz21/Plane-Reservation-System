@@ -85,7 +85,7 @@ void MainWindow::on_pushButton_clicked()
     qDebug() << isCheckedMap;
     qDebug() << m_code;
     qDebug() << isCheckedMap.count();
-//    for(int i=0;i<=isCheckedMap.count()+1;i++)
+//    for(int i=0;i<=isCheckedMap.count();i++)
 //    {
 //        qDebug() <<i  << " booking" << isCheckedMap;
 //        SeatsDatabaseController seatDB(seatsDB_path);
